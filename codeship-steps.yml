@@ -1,0 +1,9 @@
+- type: serial
+  steps:
+    - name: push-2-ecr
+      service: service
+      type: push
+      image_tag: "test"
+      image_name: 159411594197.dkr.ecr.us-east-1.amazonaws.com/medwizer/prod/mono
+      registry: https://159411594197.dkr.ecr.us-east-1.amazonaws.com
+      dockercfg_service: dockercfg_vir_generator

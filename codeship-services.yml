@@ -1,0 +1,27 @@
+medwizer-mono:
+  image: 159411594197.dkr.ecr.eu-central-1.amazonaws.com/medwizer/mono
+  dockercfg_service: dockercfg_fra_generator
+
+service:
+  build:
+    image: 159411594197.dkr.ecr.us-east-1.amazonaws.com/medwizer/prod/mono
+    dockerfile: Dockerfile
+  cached: true
+
+awsdeployment:
+  image: codeship/aws-deployment
+  encrypted_env_file: aws.vir.encrypted
+  environment:
+    - AWS_DEFAULT_REGION=us-east-1
+  volumes:
+    - ./:/deploy
+
+dockercfg_vir_generator:
+  image: codeship/aws-ecr-dockercfg-generator
+  add_docker: true
+  encrypted_env_file: aws.vir.encrypted
+
+dockercfg_fra_generator:
+  image: codeship/aws-ecr-dockercfg-generator
+  add_docker: true
+  encrypted_env_file: aws.fra.encrypted
