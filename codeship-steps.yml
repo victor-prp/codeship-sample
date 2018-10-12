@@ -1,5 +1,8 @@
 - type: serial
   steps:
+    - name: build the service first with the dockercfg creds set to frankfurt
+      command: true
+      dockercfg_service: dockercfg_fra_generator
     - name: push-2-ecr
       service: service
       type: push
